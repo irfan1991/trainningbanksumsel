@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aplikasi PMDB </title>
+
+    <!-- Bootstrap CSS -->
+    <link  th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/datatables.min.css}" rel="stylesheet">
+    <link th:href="@{/select2/dist/css/select2.min.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}" rel="stylesheet">
+    <!-- jQuery -->
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/datatables.min.js}"></script>
+    <script th:src="@{/select2/dist/js/select2.min.js}"></script>
+     <script th:src="@{/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
+</head>
+
+<body>
+
+    <!-- -->
+
+    <h1 class="text-center">Form Path Number</h1>
+
+    <div class="container">
+        <form action="/pn/simpan" methode="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="part_number">Part Number</label>
+                <input type="text" class="form-control" name="part_number" id="part_number" placeholder="Input Part Number" autofocus  required>
+            </div>
+
+            <div class="form-group">
+                <label for="part_name">Nama Barang</label>
+                <input type="text" class="form-control" name="part_name" id="part_name" placeholder="Input Nama Barang"  value="">
+            </div>
+
+            <div class="form-group">
+                <label for="part_stock">Stock</label>
+                <input type="number" name="part_stock" class="form-control" id="part_stock" placeholder="Input Stock Barang"  value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="part_uom">Satuan</label>
+                <input type="text" name="part_uom" class="form-control" id="part_uom" placeholder="Input Satuan Barang" value="">
+            </div>
+            
+            <div class="form-group">
+                <label for="part_date">Tanggal Masuk</label>
+                <input type="text" name="part_date" class="form-control datepicker" id="part_date" placeholder="Input Tanggal Masuk" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" name="simpan" class="btn btn-primary">Submit</button>&nbsp;
+                <a th:href="'/all'" class="btn btn-primary">Cancel</a>
+            </div>
+            
+
+        </form>
+    </div>
+
+<script>
+
+function getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    console.log(today);
+    document.getElementById("part_date").value = today;
+}
+
+
+window.onload = function() {
+    getDate();
+};
+
+
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    defaultDate: '0000-00-00' 
+});
+</script>
+
+
+</body>
+
+</html>

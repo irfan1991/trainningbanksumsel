@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aplikasi Crud Nasabah </title>
+
+    <!-- Bootstrap CSS -->
+    <link  th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/datatables.min.css}" rel="stylesheet">
+     <!-- jQuery -->
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/datatables.min.js}"></script>
+  </head>
+
+<body>
+
+    <!-- -->
+
+    <h1 class="text-center">Form Pegawai</h1>
+
+    <div class="container">
+        <form th:object="${pegawai}" th:action="@{/pegawai/create}" method="post" enctype="multipart/form-data">
+           
+           <input type="hidden" name="id" th:field="*{id}" />
+ 			 <input type="hidden" name="version" th:field="*{version}" />
+           
+           
+            <div class="form-group">
+                <label for="nip">NIP</label>
+                <input type="text" class="form-control" name="nip" id="nip" th:field="*{nip}" placeholder="Input NIP"
+                th:if="${view != 0 }" th:text="${readonly}" autofocus  required>
+            </div>
+           
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" name="nama" id="nama" th:field="*{nama}" placeholder="Input Nama" autofocus  required>
+            </div>
+
+            <div class="form-group">
+                <label for="jabatan">Jabatan</label>
+                <input type="text" class="form-control" name="jabatan" id="jabatan" placeholder="Input Jabatan"  th:field="*{jabatan}" >
+            </div>
+
+            
+       
+            <div class="form-group">
+                <button type="submit" name="simpan" class="btn btn-primary">Submit</button>&nbsp;
+                <a th:href="'/pegawai'" class="btn btn-primary">Cancel</a>
+            </div>
+            
+
+        </form>
+    </div>
+
+
+
+
+</body>
+
+</html>

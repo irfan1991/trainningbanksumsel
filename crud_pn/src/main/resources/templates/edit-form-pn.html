@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aplikasi PMDB </title>
+
+    <!-- Bootstrap CSS -->
+    <link  th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/datatables.min.css}" rel="stylesheet">
+    <link th:href="@{/select2/dist/css/select2.min.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}" rel="stylesheet">
+    <!-- jQuery -->
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/datatables.min.js}"></script>
+    <script th:src="@{/select2/dist/js/select2.min.js}"></script>
+     <script th:src="@{/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
+</head>
+
+<body>
+
+    <!-- -->
+
+    <h1 class="text-center">Form Path Number</h1>
+
+    <div class="container">
+        <form th:action="@{/pn/update}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" th:field="*{views.id}">
+            <div class="form-group">
+                <label for="part_number">Part Number</label>
+                <input type="text" class="form-control" name="part_number" id="part_number" placeholder="Input Part Number" autofocus  required
+                th:field="*{views.part_number}">
+            </div>
+
+            <div class="form-group">
+                <label for="part_name">Nama Barang</label>
+                <input type="text" class="form-control" name="part_name" id="part_name" placeholder="Input Nama Barang" 
+                th:field="*{views.part_name}">
+            </div>
+
+            <div class="form-group">
+                <label for="part_stock">Stock</label>
+                <input type="number" name="part_stock" class="form-control" id="part_stock" placeholder="Input Stock Barang"  
+                th:field="*{views.part_stock}">
+            </div>
+
+            <div class="form-group">
+                <label for="part_uom">Satuan</label>
+                <input type="text" name="part_uom" class="form-control" id="part_uom" placeholder="Input Satuan Barang" 
+                th:field="*{views.part_uom}">
+            </div>
+            
+            <div class="form-group">
+                <label for="part_date">Tanggal Masuk</label>
+                <input type="text" name="part_date" class="form-control datepicker" id="part_date" placeholder="Input Tanggal Masuk"
+                th:field="*{views.part_date}" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" name="simpan" class="btn btn-primary">Update</button>&nbsp;
+                <a th:href="'/all'" class="btn btn-primary">Cancel</a>
+            </div>
+            
+
+        </form>
+    </div>
+
+<script>
+
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    defaultDate: '0000-00-00' 
+});
+</script>
+
+
+</body>
+
+</html>

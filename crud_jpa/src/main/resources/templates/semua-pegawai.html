@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleft.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD Pegawai</title>
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/datatables.min.css}" rel="stylesheet">
+    <link th:href="@{/font/css/fontawesome.min.css}" rel="stylesheet">
+    <link th:href="@{/iconic/font/css/open-iconic-bootstrap.css}" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/font/js/fontawesome.min.js}"></script>
+    <script th:src="@{/js/datatables.min.js}"></script>
+</head>
+
+<body>
+
+    <!-- -->
+
+    <h1 class="text-center">Table Pegawai</h1>
+
+    <br>
+    <div class="container">
+
+        <div class="float-right"><a th:href="'/pegawai/create'" class="btn btn-warning">Tambah Data
+        </a></div>
+        <br><br><br>
+
+        <table class="table table-light table-striped" id="myTable">
+            <thead>
+                <tr class="table-danger">
+                    <th>No</th>
+                    <th>NIP</th>
+                    <th>Nama</th>
+                    <th>Jabatan</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pegawai : ${pegawais}">
+                    <td th:text="${pegawai.nip}"></td>
+                    <td th:text="${pegawai.nama}"></td>
+                    <td th:text="${pegawai.jabatan}"></td>
+                    <td>
+                        <a th:href=" '/pegawai/edit/'+ ${pegawai.id} " class="btn btn-info"><span class="oi oi-pencil" title="Edit Data" aria-hidden="true"></span></a>
+                        <a th:href=" '/pegawai/view/'+ ${pegawai.id} " class="btn btn-warning"><span class="oi oi-eye" title="View Data" aria-hidden="true"></span></a>
+                        <a th:href=" '/pegawai/hapus/'+ ${pegawai.id} " class="btn btn-success"><span class="oi oi-trash" title="Delete Data" aria-hidden="true"></span></a>
+
+                    </td>
+                </tr>
+       </tbody>
+        
+    </div>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+</body>
+
+</html>

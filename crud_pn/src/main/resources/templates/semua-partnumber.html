@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD Part Number</title>
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/datatables.min.css}" rel="stylesheet">
+	  <link th:href="@{/iconic/font/css/open-iconic-bootstrap.css}" rel="stylesheet">
+	
+
+    <!-- jQuery -->
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/datatables.min.js}"></script>
+</head>
+
+<body>
+
+    <!-- -->
+
+    <h1 class="text-center">Table Part Number </h1>
+
+     <br>
+    <div class="container">
+        
+        <div class="float-right"><a th:href="'/pn/tambah'" class="btn btn-warning">Tambah Data
+        </a></div>
+        <br><br><br>
+        <table class="table table-light table-striped" id="myTable">
+            <thead>
+                <tr class="table-danger">
+                    <th>No</th>
+                    <th>Part Number</th>
+                    <th>Nama Barang</th>
+                      <th>Stock</th>
+                    <th>Satuan</th>
+                     <th>Tanggal Dibuat</th>
+                      <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each = "p,no : ${parts}">
+                    <td th:text="${no.count}"></td>
+                    <td th:text="${p.part_number}"></td>
+                    <td th:text="${p.part_name}"></td>
+                    <td th:text="${p.part_stock}"></td>
+                    <td th:text="${p.part_uom}"></td>
+                    <td th:text="${p.part_date}"></td>
+                     <td>
+                        <a th:href="'/pn/edit/'+${p.id}" class="btn btn-info"><span class="oi oi-pencil" title="Edit Data" aria-hidden="true"></span></a>
+                        <a href="" class="btn btn-warning"><span class="oi oi-eye" title="View Data" aria-hidden="true"></span></a>
+                        <a th:href="'/pn/hapus/'+${p.id}" class="btn btn-danger"><span class="oi oi-trash" title="Delete Data" aria-hidden="true"></span></a>
+                    </td>
+                </tr>
+             
+            </tbody>
+        </table>
+        <!-- </div> -->
+    </div>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+</body>
+
+</html>
